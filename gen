@@ -1,0 +1,25 @@
+#!/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
+import random
+def main():
+    user_input_character=input('characters to use: ')
+    if user_input_character == '':
+        print('Error invalid value at character')
+        exit()
+    user_input_length=int(input('Length: '))
+    try:
+        user_input_length+1
+    except:
+        print('Error invalid value at length')
+        exit()
+    x=0
+    plist=user_input_character.split(' ')
+    if user_input_character == 'Default' or user_input_character == 'default':
+        plist=['1','2','3','4','5','6','7','8','9','0','q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m']
+    l=''
+    while x != user_input_length:
+        l=l+random.choice(plist)
+        x=x+1
+    print(l)
+
+if __name__ == '__main__':
+    main()
