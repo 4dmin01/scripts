@@ -1,25 +1,25 @@
 #!/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
+import argparse
 import random
+
 def main():
-    user_input_character=input('characters to use: ')
-    if user_input_character == '':
-        print('Error invalid value at character')
-        exit()
-    user_input_length=int(input('Length: '))
-    try:
-        user_input_length+1
-    except:
-        print('Error invalid value at length')
-        exit()
-    x=0
-    plist=[word for word in user_input_character]
-    if user_input_character == 'Default' or user_input_character == 'default':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', '--custom', help='Use a custum list of characters.')
+    parser.add_argument('-l', '--length', help='Length of the password.')
+    parser.add_argument('-d', '--default', action='store_true', help='Use the default characters.')
+    args = parser.parse_args()
+
+    if args.custom:
+        plist=[word for word in args.custom]
+    elif args.default:
         plist=[dword for dword in '1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm']
-    l=''
-    while x != user_input_length:
-        l=l+random.choice(plist)
+
+    l_lijst=''
+    x=0
+    while x != int(args.length):
+        l_lijst=l_lijst+random.choice(plist)
         x=x+1
-    print(l)
+    print(l_lijst)
 
 if __name__ == '__main__':
     main()
